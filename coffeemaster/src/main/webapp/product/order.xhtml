@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" type="text/css" ></link>
+</h:head>
+<h:body>
+	<h:form>
+		    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value">
+
+        <p:selectOneListbox id="basic" value="#{orderController.selectedOptions}" valueChangeListener="#{orderController.valueChanged}" 
+                     onchange="submit()">
+           <f:selectItems value="#{orderController.products}" var="product"
+					itemLabel="#{product.productName},#{product.productPrice} TL" itemValue="#{product.id}" />
+        </p:selectOneListbox>
+        <p:selectManyMenu  id="basic2"
+				value="#{orderController.selectedAddition}" valueChangeListener="#{orderController.valueChanged2}"
+                     onchange="submit()">
+                     
+				<f:selectItems value="#{orderController.additions}" var="addition"
+					itemLabel="#{addition.additionName},#{addition.additionPrice} TL" itemValue="#{addition}" />
+			</p:selectManyMenu>
+		</h:panelGrid>
+		
+		
+		 <p:commandButton value="Add"  icon="ui-icon-check"  action="#{orderController.addProduct()}"/>
+		 <p:commandButton value="Approve" icon="ui-icon-check"  action="#{orderController.approveProduct()}" disabled="#{orderController.disable}"/>
+ 
+
+	</h:form>
+
+</h:body>
+</html>

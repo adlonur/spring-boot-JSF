@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<body>
+	
+
+		<h:form id="login-form">
+			<p:messages id="messages" showDetail="false" />
+
+			<p:panel id="panel" header="Login">
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="user-name" value="User Email" />
+					<p:inputText id="user-name" value="#{loginController.email}"
+						required="true" label="User name">
+						<f:validateLength minimum="3" />
+					</p:inputText>
+					<p:message for="user-name" display="icon" />
+
+					<p:outputLabel for="password" value="Password:" />
+					<p:password id="password" value="#{loginController.password}"
+						required="true" label="Password">
+						<f:validateLength minimum="3" />
+					</p:password>
+					<p:message for="password" display="icon" />
+				</h:panelGrid>
+
+				<p:commandButton id="login" value="Login" update="panel messages"
+					action="#{loginController.login()}" />
+			</p:panel>
+		</h:form>
+
+	</body>
+
+</html>

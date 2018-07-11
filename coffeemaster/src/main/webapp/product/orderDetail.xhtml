@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<h:form id="form">
+		<p:repeat value="#{orderDetailController.products}" var="product">
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+
+						<h:outputText value="Name:" />
+						<h:outputText value="#{product.productName}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Price:" />
+						<h:outputText value="#{product.productPrice} TL"
+							style="font-weight: bold" />
+
+						<p:repeat value="#{product.additions}" var="addition">
+							<h:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="Additons Name:" />
+								<h:outputText value="#{addition.additionName}"
+									style="font-weight: bold" />
+								<h:outputText value="Additons Price: " />
+								<h:outputText value="#{addition.additionPrice} TL"
+									style="font-weight: bold" />
+							</h:panelGrid>
+						</p:repeat>
+					</h:panelGrid>
+
+				</p:outputPanel>
+
+			</h:panelGrid>
+
+			<hr />
+		</p:repeat>
+		<h:outputText value="Total Price:" style="font-weight: bold" />
+		<h:outputText
+			value="#{orderDetailController.priceModel.totalPrice} TL"
+			style="font-weight: bold" />
+		<h:outputText value="       Total Discount" style="font-weight: bold" />
+		<h:outputText
+			value="#{orderDetailController.priceModel.totalDiscount} TL"
+			style="font-weight: bold" />
+		<h:outputText value="       Real Price" style="font-weight: bold" />
+		<h:outputText value="#{orderDetailController.priceModel.realPrice} TL"
+			style="font-weight: bold" />
+		<p:commandButton value="Pay" icon="ui-icon-check"
+			action="#{orderDetailController.pay()}" />
+	</h:form>
+</h:body>
+</html>
